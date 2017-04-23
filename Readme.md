@@ -1,2 +1,1 @@
-Códigos criados a partir da leitura do livro Cucumber e Rspec - Contrua aplicações Ruby com testes e especificações utilizando TDD e BDD.
-De autoria de Hugo Baraúna, publicado pela casa do código (casadocodigo.com.br).
+Códigos criados a partir da leitura do livro [Cucumber e Rspec - Contrua aplicações Ruby com testes e especificações utilizando TDD e BDD](https://www.casadocodigo.com.br/products/livro-cucumber-rspec-tdd-bdd),de autoria de Hugo Baraúna, publicado pela [casa do código](https://www.casadocodigo.com.br)
