@@ -1,0 +1,2 @@
+Ch 09 had theory about best practices with Cucumber
+Ch 09 tinha teoria sobre melhores práticas com o Cucumber
