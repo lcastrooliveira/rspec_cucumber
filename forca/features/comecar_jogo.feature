@@ -15,7 +15,6 @@ Funcionalidade: Começar jogo
     Bem-vindo ao jogo da forca!
     """
 
-  @wip
   Cenário: Sorteio da palavra com sucesso
     Após o jogador começar o jogo, ele deve escolher o tamanho da palavraa ser
     advinhada. Ao escolher o tamanho, o jogo sorteia a palavra e mostra na tela
@@ -26,5 +25,20 @@ Funcionalidade: Começar jogo
     E termino o jogo
     Então o jogo termina com a seguinte mensagem na tela:
     """
-    - - - -
+    _ _ _ _
+    """
+
+  @wip
+  Cenário: Sorteio da palavra sem sucesso
+    Se o jogador pedor pro jogo sortear uma palavra com um tamanho que o jogo
+    não tem disponível, o jogador deve ser avisado disso e o jogo deve pedir pro
+    jogador sortear outra palavra.
+
+    Dado que comecei um jogo
+    Quando escolho que a palavra a ser sorteada deverá ter "20" letras
+    E termino o jogo
+    Então o jogo termina com a seguinte mensagem na tela:
+    """
+    Não temos uma palavra com o tamanho desejado. É necessário escolher outro tamanho.
+    Qual o tamanho da palavra a ser sorteada?
     """

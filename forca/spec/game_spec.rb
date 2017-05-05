@@ -24,7 +24,9 @@ describe Game do
       it 'asks the player for the length of the word to be raffled' do
         question = 'Qual o tamanho da palavra a ser sorteada?'
         expect(ui).to receive(:write).with(question)
-        expect(ui).to receive(:read)
+
+        word_length = '3'
+        expect(ui).to receive(:read).and_return(word_length)
 
         game.next_step
       end
@@ -35,6 +37,36 @@ describe Game do
         game.next_step
 
         expect(game).to be_ended
+      end
+    end
+    context 'when the player asks to raffle a word' do
+      it 'raffles a word with the given length' do
+        word_length = '3'
+        allow(ui).to receive(:read).and_return(word_length)
+
+        game.next_step
+
+        expect(game.raffled_word).to have(word_length).letters
+      end
+
+      it 'prints a \'_\' for each letter in the raffled word' do
+        word_length = '3'
+        allow(ui).to receive(:read).and_return(word_length)
+
+        expect(ui).to receive(:write).with('_ _ _')
+
+        game.next_step
+      end
+
+      it 'tells that i\'s not possible to raffle with the given length' do
+        word_length = '20'
+        allow(ui).to receive(:read).and_return(word_length)
+
+        error_message = 'Não temos uma palavra com o tamanho desejado. É necessário escolher outro tamanho.'
+
+        expect(ui).to receive(:write).with(error_message)
+
+        game.next_step
       end
     end
   end
