@@ -1,13 +1,14 @@
 # encoding: UTF-8
 
 require_relative 'cli_ui'
+require_relative 'word_raffler'
 
 class Game
 
   attr_accessor :raffled_word
 
-  def initialize(ui = CliUi.new)
-    @ui = ui
+  def initialize(word_raffler = WordRaffler.new)
+    @word_raffler = word_raffler
     @ended = false
   end
 
@@ -15,40 +16,15 @@ class Game
     @ui.write('Bem-vindo ao jogo da forca!')
   end
 
+  def raffle(word_length)
+    @raffled_word = @word_raffler.raffle(word_length)
+  end
+
   def ended?
     @ended
   end
 
-  def next_step
-    @ui.write('Qual o tamanho da palavra a ser sorteada?')
-    player_input = @ui.read.strip
-    if player_input == 'fim'
-      @ended = true
-    else
-      if raffle_word(player_input.to_i)
-        print_letters_feedback
-      else
-        error_message = 'Não temos uma palavra com o tamanho desejado. É necessário escolher outro tamanho.'
-        @ui.write(error_message)
-      end
-    end
+  def finish
+    @ended = true
   end
-
-  private
-
-  def raffle_word(word_length)
-    words = %w(hi mom game fruit)
-    @raffled_word = words.detect { |word| word.length == word_length }
-  end
-
-  def print_letters_feedback
-    letters_feedback = ''
-
-    @raffled_word.length.times do
-      letters_feedback << '_ '
-    end
-    letters_feedback.strip!
-    @ui.write(letters_feedback)
-  end
-
 end

@@ -1,0 +1,12 @@
+# encoding: UTF-8
+
+# Classe responsavel por sortear uma palavra de uma lista de palavras
+class WordRaffler
+  def initialize(words = %w(hi mom game fruit))
+    @words = words
+  end
+
+  def raffle(word_length)
+    @words.detect { |word| word.length == word_length }
+  end
+end
