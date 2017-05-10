@@ -20,7 +20,7 @@ describe GameFlow do
   end
 
   describe '#next_step' do
-    context 'when the game is in the :intial state' do
+    context 'when the game is in the :intial_state' do
 
       it 'asks the player for the length of the word to be raffled' do
         question = 'Qual o tamanho da palavra a ser sorteada?'
@@ -107,10 +107,6 @@ describe GameFlow do
           game_flow.next_step
         end
       end
-    end
-
-    context 'when the game is in the word raffled state' do
-      before { allow(game).to receive(:state).and_return(:word_raffled) }
 
       context 'and the player fails to guess a letter' do
         before { allow(game).to receive(:guess_letter).and_return(false) }
@@ -135,6 +131,26 @@ describe GameFlow do
 
           game_flow.next_step
         end
+      end
+    end
+
+    context 'when the game is the in the :ended state' do
+      before { allow(game).to receive(:state).and_return(:ended) }
+
+      it 'prints a success message when the player win' do
+        allow(game).to receive(:player_won?).and_return(true)
+
+        expect(ui).to receive(:write).with('Você venceu! :)')
+
+        game_flow.next_step
+      end
+
+      it 'prints a defeat message whe the player loose' do
+        allow(game).to receive(:player_won?).and_return(false)
+
+        expect(ui).to receive(:write).with('Você perdeu. :(')
+
+        game_flow.next_step
       end
     end
   end

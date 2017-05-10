@@ -29,9 +29,19 @@ class GameFlow
     when :word_raffled
       ask_to_guess_a_letter
     end
+
+    print_game_final_result if @game.ended?
   end
 
   private
+
+  def print_game_final_result
+    if @game.player_won?
+      @ui.write('Você venceu! :)')
+    else
+      @ui.write('Você perdeu. :(')
+    end
+  end
 
   def ask_the_player(question)
     @ui.write(question)
